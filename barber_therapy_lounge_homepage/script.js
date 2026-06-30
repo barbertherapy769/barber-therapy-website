@@ -1,0 +1,10 @@
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.main-nav');
+toggle?.addEventListener('click', () => nav.classList.toggle('open'));
+document.querySelectorAll('.main-nav a').forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
+const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible') }) }, { threshold: .14 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const glow = document.querySelector('.cursor-glow');
+window.addEventListener('mousemove', e => { if (!glow) return; glow.style.left = `${e.clientX}px`; glow.style.top = `${e.clientY}px`; });
+const stickyBtn = document.getElementById("sticky-book");
+window.addEventListener('scroll', () => {if (window.scrollY > 450) {stickyBtn.classList.add("show-sticky-book-btn");stickyBtn.classList.remove("hide-sticky-book-btn");} else {stickyBtn.classList.add("hide-sticky-book-btn");stickyBtn.classList.remove("show-sticky-book-btn");}});
